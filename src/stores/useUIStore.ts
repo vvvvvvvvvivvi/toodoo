@@ -24,6 +24,11 @@ interface UIStore {
   setPendingReflection: (pending: boolean) => void
   setReflectionSummaries: (summaries: CircleReflectionSummary[]) => void
   closeReflection: () => void
+
+  // Short-lived celebratory message ("nom! …"), cleared by the Toast itself.
+  toast: string | null
+  showToast: (message: string) => void
+  clearToast: () => void
 }
 
 export const useUIStore = create<UIStore>((set) => ({
@@ -40,4 +45,8 @@ export const useUIStore = create<UIStore>((set) => ({
   setPendingReflection: (pending) => set({ pendingReflection: pending }),
   setReflectionSummaries: (summaries) => set({ reflectionSummaries: summaries }),
   closeReflection: () => set({ pendingReflection: false, reflectionSummaries: [] }),
+
+  toast: null,
+  showToast: (message) => set({ toast: message }),
+  clearToast: () => set({ toast: null }),
 }))

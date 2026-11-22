@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { completeFirstRun } from '@/lib/mutations/settingsMutations'
+import { GooseFace, Sparkle } from '@/components/shared/Decor'
 
 const CARDS = [
   { emoji: '🍪', text: 'Tasks are food.' },
-  { emoji: '🪿', text: 'I eat what fits.' },
+  { emoji: 'goose', text: 'I eat what fits.' },
   { emoji: '💩', text: "I poo when it's done." },
 ]
 
@@ -23,24 +24,33 @@ export function IntroCards() {
   }
 
   return (
-    <div className="flex h-full flex-col items-center justify-center gap-6 p-8 text-center">
-      <span className="text-7xl">{card.emoji}</span>
-      <p className="font-display text-2xl text-text-primary">{card.text}</p>
+    <div className="mx-auto flex h-full max-w-[480px] flex-col items-center justify-center gap-8 p-8 text-center">
+      <p className="hand-label text-xl text-text-secondary">hi, I'm the toodoo goose</p>
+
+      <div key={index} className="relative flex h-56 w-64 animate-pop-in items-center justify-center">
+        <div className="blob absolute inset-0 bg-butter" />
+        <Sparkle size={30} className="absolute -left-2 top-6" />
+        <Sparkle size={20} className="absolute right-0 top-0" delay={0.7} />
+        <Sparkle size={24} className="absolute bottom-0 right-6" delay={1.3} />
+        {card.emoji === 'goose' ? (
+          <GooseFace size={130} className="relative animate-bob" />
+        ) : (
+          <span className="relative animate-bob text-8xl">{card.emoji}</span>
+        )}
+      </div>
+
+      <p className="hand-label text-4xl leading-tight">{card.text}</p>
 
       <div className="flex gap-2">
         {CARDS.map((c, i) => (
           <span
             key={c.text}
-            className={`h-2 w-2 rounded-full ${i === index ? 'bg-primary' : 'bg-circle-empty'}`}
+            className={`h-2.5 rounded-full transition-all ${i === index ? 'w-7 bg-primary' : 'w-2.5 bg-butter-deep'}`}
           />
         ))}
       </div>
 
-      <button
-        type="button"
-        onClick={handleNext}
-        className="rounded-2xl bg-primary px-6 py-3 font-display text-base text-background"
-      >
+      <button type="button" onClick={handleNext} className="btn-main px-10 text-lg">
         {isLast ? 'Get started' : 'Next'}
       </button>
     </div>

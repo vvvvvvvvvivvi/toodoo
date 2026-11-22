@@ -1,5 +1,6 @@
 import { buildDonutSegments, type DonutSegment, type SegmentKind } from '@/components/today/donutMath'
 import type { Circle, Task } from '@/types/models'
+import { GooseFace } from '@/components/shared/Decor'
 
 const RADIUS_OUTER = 115
 const RADIUS_INNER = 68
@@ -39,10 +40,10 @@ function ringSegmentPath(startFraction: number, endFraction: number): string {
 }
 
 const SEGMENT_CLASS: Record<SegmentKind, string> = {
-  digested: 'fill-accent',
-  planned: 'fill-primary',
-  locked: 'fill-circle-empty stroke-primary',
-  empty: 'fill-circle-empty',
+  digested: 'fill-accent stroke-butter',
+  planned: 'fill-primary stroke-butter',
+  locked: 'fill-carrot stroke-butter',
+  empty: 'fill-paper stroke-butter',
 }
 
 function LockMarker({ segment }: { segment: DonutSegment }) {
@@ -66,26 +67,22 @@ export function DonutChart({ circle, tasks, today }: DonutChartProps) {
   const segments = buildDonutSegments(circle, tasks, today)
 
   return (
-    <svg
-      viewBox={`0 0 ${VIEW_SIZE} ${VIEW_SIZE}`}
-      className="mx-auto w-full max-w-sm"
-      role="img"
-      aria-label="Today's Circle"
-    >
-      {segments.map((s) => (
-        <path
-          key={s.key}
-          d={ringSegmentPath(s.start, s.end)}
-          className={SEGMENT_CLASS[s.kind]}
-          strokeWidth={s.kind === 'locked' ? 3 : 0}
-        />
-      ))}
-      {segments.filter((s) => s.kind === 'locked').map((s) => (
-        <LockMarker key={`${s.key}-lock`} segment={s} />
-      ))}
-      <text x={CENTER_X} y={CENTER_Y} textAnchor="middle" dominantBaseline="middle" fontSize={44}>
-        🪿
-      </text>
-    </svg>
+    <div className="relative mx-auto w-full max-w-[220px] lg:max-w-[280px]">
+      <svg viewBox={`0 0 ${VIEW_SIZE} ${VIEW_SIZE}`} className="w-full" role="img" aria-label="Today's Circle">
+        {segments.map((s) => (
+          <path
+            key={s.key}
+            d={ringSegmentPath(s.start, s.end)}
+            className={SEGMENT_CLASS[s.kind]}
+            strokeWidth={4}
+            strokeLinejoin="round"
+          />
+        ))}
+        {segments.filter((s) => s.kind === 'locked').map((s) => (
+          <LockMarker key={`${s.key}-lock`} segment={s} />
+        ))}
+      </svg>
+      <GooseFace size={80}className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 animate-bob" />
+    </div>
   )
 }

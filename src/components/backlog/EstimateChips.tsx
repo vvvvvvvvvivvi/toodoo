@@ -1,9 +1,4 @@
-const PRESETS: { label: string; minutes: number }[] = [
-  { label: '15m', minutes: 15 },
-  { label: '30m', minutes: 30 },
-  { label: '1h', minutes: 60 },
-  { label: '2h', minutes: 120 },
-]
+import { PORTIONS } from '@/components/backlog/portions'
 
 interface EstimateChipsProps {
   minutes: number
@@ -13,31 +8,42 @@ interface EstimateChipsProps {
 }
 
 export function EstimateChips({ minutes, isCustom, onSelectPreset, onSelectCustom }: EstimateChipsProps) {
+  const cardClass = (active: boolean) =>
+    `flex flex-col items-center gap-0.5 rounded-[22px] border-2 px-1 py-2 transition-all duration-200 ${
+      active
+        ? '-translate-y-1 -rotate-2 border-primary-deep bg-primary shadow-[0_4px_0_var(--color-primary-deep)]'
+        : 'border-butter-deep bg-paper hover:-translate-y-0.5'
+    }`
+
   return (
-    <div className="flex flex-wrap gap-2">
-      {PRESETS.map((preset) => {
-        const active = !isCustom && minutes === preset.minutes
+    <div className="grid grid-cols-5 gap-2">
+      {PORTIONS.map((p) => {
+        const active = !isCustom && minutes === p.minutes
         return (
           <button
-            key={preset.minutes}
+            key={p.minutes}
             type="button"
-            onClick={() => onSelectPreset(preset.minutes)}
-            className={`rounded-2xl px-4 py-2 font-body text-sm ${
-              active ? 'bg-primary text-background' : 'bg-circle-empty text-text-primary'
-            }`}
+            aria-pressed={active}
+            aria-label={p.label}
+            onClick={() => onSelectPreset(p.minutes)}
+            className={cardClass(active)}
           >
-            {preset.label}
+            <span className={`text-2xl ${active ? 'animate-wiggle' : ''}`}>{p.emoji}</span>
+            <span className="font-display text-sm font-semibold text-text-primary">{p.label}</span>
+            <span className={`font-hand text-xs font-bold leading-none ${active ? 'text-text-primary/75' : 'text-text-secondary'}`}>{p.caption}</span>
           </button>
         )
       })}
       <button
         type="button"
+        aria-pressed={isCustom}
+        aria-label="Custom"
         onClick={onSelectCustom}
-        className={`rounded-2xl px-4 py-2 font-body text-sm ${
-          isCustom ? 'bg-primary text-background' : 'bg-circle-empty text-text-primary'
-        }`}
+        className={cardClass(isCustom)}
       >
-        Custom
+        <span className={`text-2xl ${isCustom ? 'animate-wiggle' : ''}`}>✏️</span>
+        <span className="font-display text-sm font-semibold text-text-primary">other</span>
+        <span className="font-hand text-xs font-bold leading-none text-text-secondary">you pick</span>
       </button>
     </div>
   )

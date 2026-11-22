@@ -26,7 +26,7 @@ export function StomachResizer({ circleId, stomachMinutes }: StomachResizerProps
           setValue(String(stomachMinutes))
           setEditing(true)
         }}
-        className="font-body text-sm text-text-secondary underline decoration-dotted"
+        className="rounded-full bg-paper/70 px-3 py-0.5 font-display text-base font-semibold text-text-primary"
       >
         {stomachMinutes}m stomach
       </button>
@@ -34,17 +34,18 @@ export function StomachResizer({ circleId, stomachMinutes }: StomachResizerProps
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex items-center gap-1">
+    <form onSubmit={handleSubmit} className="flex animate-pop-in items-center gap-1">
       <input
         autoFocus
         type="number"
         min={1}
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        className="w-16 rounded-lg border border-circle-empty bg-background px-2 py-1 text-right font-body text-sm"
+        aria-label="Stomach minutes"
+        className="w-16 rounded-full bg-paper px-2 py-0.5 text-right font-display text-base outline-none ring-2 ring-primary"
       />
-      <button type="submit" className="rounded-lg bg-primary px-2 py-1 font-body text-xs text-background">
-        Set
+      <button type="submit" className="rounded-full bg-primary px-3 py-0.5 font-hand text-base font-bold">
+        set
       </button>
     </form>
   )

@@ -16,7 +16,7 @@ export function DefaultStomachSetting({ defaultStomachMinutes }: DefaultStomachS
   }
 
   return (
-    <label className="flex items-center justify-between rounded-2xl bg-circle-empty/50 px-4 py-3">
+    <label className="flex items-center justify-between card px-4 py-3">
       <span className="font-body text-text-primary">Default stomach (hours)</span>
       <input
         type="number"
@@ -25,7 +25,7 @@ export function DefaultStomachSetting({ defaultStomachMinutes }: DefaultStomachS
         value={hours}
         onChange={(e) => setHours(e.target.value)}
         onBlur={commit}
-        className="w-20 rounded-lg border border-circle-empty bg-background px-2 py-1 text-right font-body text-text-primary"
+        className="w-20 input-cute px-2 py-1 text-right font-body text-text-primary"
       />
     </label>
   )

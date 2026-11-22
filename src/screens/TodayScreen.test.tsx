@@ -88,6 +88,7 @@ describe('TodayScreen with an open circle', () => {
     await seedPlannedTask('c1', { id: 't1', title: 'Chip away', remainingMinutes: 30 })
 
     render(<TodayScreen />)
+    await user.click(screen.getByText('Chip away'))
     await user.click(screen.getByRole('button', { name: /nibble chip away/i }))
     await screen.findByText('Nibble at "Chip away"')
 
@@ -109,6 +110,7 @@ describe('TodayScreen with an open circle', () => {
     await seedPlannedTask('c1', { id: 't1', title: 'Not today', remainingMinutes: 30 })
 
     render(<TodayScreen />)
+    await user.click(screen.getByText('Not today'))
     await user.click(screen.getByRole('button', { name: /return not today to backlog/i }))
 
     await waitFor(() => expect(screen.queryByText('Not today')).not.toBeInTheDocument())
@@ -123,6 +125,7 @@ describe('TodayScreen with an open circle', () => {
     await seedPlannedTask('c1', { id: 't1', title: 'Due today', remainingMinutes: 30, deadline: today })
 
     render(<TodayScreen />)
+    await user.click(screen.getByText('Due today'))
     await user.click(screen.getByRole('button', { name: /return due today to backlog/i }))
 
     // Still there and still planned — the click was refused, not applied.
@@ -225,11 +228,13 @@ describe('Edit/delete a task from Today', () => {
     await seedPlannedTask('c1', { id: 't1', title: 'Draft', estimateMinutes: 30, remainingMinutes: 30 })
 
     render(<TodayScreen />)
+    await user.click(screen.getByText('Draft'))
     await user.click(screen.getByRole('button', { name: /edit draft/i }))
 
     const titleInput = await screen.findByDisplayValue('Draft')
     await user.clear(titleInput)
     await user.type(titleInput, 'Final draft')
+    await user.click(screen.getByRole('button', { name: /tags/i }))
     await user.type(screen.getByPlaceholderText(/work, urgent/i), 'writing')
     await user.click(screen.getByRole('button', { name: /save changes/i }))
 
@@ -247,6 +252,7 @@ describe('Edit/delete a task from Today', () => {
     await seedPlannedTask('c1', { id: 't1', title: 'Throwaway' })
 
     render(<TodayScreen />)
+    await user.click(screen.getByText('Throwaway'))
     await user.click(screen.getByRole('button', { name: /delete throwaway/i }))
 
     await waitFor(() => expect(useTaskStore.getState().tasks).toHaveLength(0))
@@ -260,6 +266,7 @@ describe('Edit/delete a task from Today', () => {
     await seedPlannedTask('c1', { id: 't1', title: 'Locked', deadline: today })
 
     render(<TodayScreen />)
+    await user.click(screen.getByText('Locked'))
     await user.click(screen.getByRole('button', { name: /delete locked/i }))
 
     expect(screen.getByText('Locked')).toBeInTheDocument()

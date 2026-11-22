@@ -36,7 +36,7 @@ describe('TaskRow completion micro-animation (design tokens spec)', () => {
     await user.click(completeButton)
 
     // Pulse fires synchronously; the actual state transition is deferred.
-    expect(completeButton.parentElement?.className).toContain('animate-complete-pulse')
+    expect(completeButton.closest('[draggable]')?.className).toContain('animate-complete-pulse')
     expect(useTaskStore.getState().tasks[0].state).toBe('planned')
     expect(completeButton).toBeDisabled()
 

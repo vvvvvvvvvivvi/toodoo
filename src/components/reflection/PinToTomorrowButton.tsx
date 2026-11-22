@@ -15,14 +15,14 @@ export function PinToTomorrowButton({ taskId, title }: PinToTomorrowButtonProps)
   }
 
   return (
-    <div className="flex items-center gap-2 rounded-2xl bg-circle-empty px-4 py-2">
+    <div className="flex items-center gap-2 rounded-[20px] bg-paper px-4 py-2.5 ring-2 ring-butter">
       <span className="flex-1 font-body text-sm text-text-primary">{title}</span>
       <button
         type="button"
         onClick={handleClick}
         disabled={pinned}
         className={`rounded-lg px-3 py-1 font-body text-sm ${
-          pinned ? 'bg-accent/30 text-text-secondary' : 'bg-primary text-background'
+          pinned ? 'bg-accent/30 text-text-secondary' : 'bg-primary text-text-primary'
         }`}
       >
         {pinned ? 'Pinned ✓' : 'Pin to tomorrow'}

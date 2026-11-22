@@ -29,7 +29,7 @@ export function CircleHistoryScreen() {
     return (
       <div className="flex flex-col items-center gap-3 py-12 text-center">
         <span className="text-7xl">🗓️</span>
-        <h1 className="font-display text-xl text-text-primary">No circles finished yet.</h1>
+        <h1 className="hand-label text-2xl">No circles finished yet.</h1>
       </div>
     )
   }
@@ -39,9 +39,9 @@ export function CircleHistoryScreen() {
       {pastCircles.map((circle) => {
         const digested = getDigestedTasksFor(circle.id, tasks)
         return (
-          <div key={circle.id} className="rounded-2xl bg-circle-empty/50 p-4">
+          <div key={circle.id} className="card p-4">
             <div className="mb-1 flex items-center justify-between">
-              <p className="font-display text-sm text-text-primary">{circle.date}</p>
+              <p className="hand-label text-lg">{circle.date}</p>
               <span className="font-body text-xs text-text-secondary">{STATE_BADGE[circle.state]}</span>
             </div>
             <p className="mb-2 font-body text-xs text-text-secondary">{circle.stomachMinutes}m stomach</p>

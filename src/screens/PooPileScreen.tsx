@@ -32,8 +32,8 @@ function PooCluster({ breakdown }: { breakdown: PooBreakdown }) {
 
 function BreakdownCard({ title, breakdown }: { title: string; breakdown: PooBreakdown }) {
   return (
-    <div className="w-full rounded-2xl bg-circle-empty/50 p-4">
-      <p className="mb-2 font-display text-sm text-text-primary">{title}</p>
+    <div className="w-full card p-4">
+      <p className="mb-2 hand-label text-lg">{title}</p>
       <PooCluster breakdown={breakdown} />
     </div>
   )
@@ -49,7 +49,7 @@ export function PooPileScreen() {
     return (
       <div className="flex flex-col items-center gap-3 py-12 text-center">
         <span className="text-7xl">💩</span>
-        <h1 className="font-display text-xl text-text-primary">Nothing digested yet. Get nibbling.</h1>
+        <h1 className="hand-label text-2xl">Nothing digested yet. Get nibbling.</h1>
       </div>
     )
   }
@@ -65,8 +65,8 @@ export function PooPileScreen() {
       <BreakdownCard title="Today" breakdown={day} />
       <BreakdownCard title="All time" breakdown={allTime} />
 
-      <div className="rounded-2xl bg-circle-empty px-6 py-4">
-        <p className="font-display text-2xl text-text-primary">🏆 {cleanPlateCount}</p>
+      <div className="card px-6 py-4">
+        <p className="hand-label text-3xl">🏆 {cleanPlateCount}</p>
       </div>
     </div>
   )

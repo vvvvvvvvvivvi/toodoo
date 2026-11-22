@@ -2,6 +2,8 @@ import { useEffect, useState, type FormEvent } from 'react'
 import { Sheet } from '@/components/shared/Sheet'
 import type { Task } from '@/types/models'
 
+const QUICK_NIBBLES = [10, 15, 30, 45]
+
 interface NibbleModalProps {
   task: Task | null
   onClose: () => void
@@ -32,19 +34,32 @@ export function NibbleModal({ task, onClose, onSubmit }: NibbleModalProps) {
   return (
     <Sheet open={task !== null} onClose={onClose} title={task ? `Nibble at "${task.title}"` : 'Nibble'}>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        <label className="flex flex-col gap-1">
-          <span className="font-body text-sm text-text-secondary">Minutes worked</span>
+        <p className="font-hand text-lg font-bold text-text-secondary">chipped away at it? every crumb counts 🍴</p>
+        <div className="flex flex-wrap gap-2">
+          {QUICK_NIBBLES.map((m) => (
+            <button
+              key={m}
+              type="button"
+              onClick={() => setValue(String(m))}
+              className={`chip ${value === String(m) ? 'chip-on' : ''}`}
+            >
+              {m}m
+            </button>
+          ))}
+        </div>
+        <label className="flex items-center gap-3">
+          <span className="hand-label text-base">Minutes worked</span>
           <input
             autoFocus
             type="number"
             min={1}
             value={value}
             onChange={(e) => setValue(e.target.value)}
-            className="rounded-xl border border-circle-empty bg-background px-3 py-2 font-body text-text-primary"
+            className="input-cute w-24 text-center font-display text-lg"
           />
         </label>
-        {error && <p className="font-body text-sm text-warning">{error}</p>}
-        <button type="submit" className="rounded-2xl bg-primary px-4 py-3 font-display text-base text-background">
+        {error && <p className="font-hand text-lg font-bold text-warning">{error}</p>}
+        <button type="submit" className="btn-main text-lg">
           Nibble
         </button>
       </form>

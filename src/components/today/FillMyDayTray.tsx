@@ -1,8 +1,8 @@
-import { X } from 'lucide-react'
 import { getFillMyDaySuggestions } from '@/lib/invariants/fillMyDay'
 import { attemptCapacityMutation } from '@/lib/mutations/circleMutations'
 import { dismissFillMyDay } from '@/lib/mutations/settingsMutations'
 import type { Task } from '@/types/models'
+import { Washi } from '@/components/shared/Decor'
 
 interface FillMyDayTrayProps {
   circleId: string
@@ -16,27 +16,34 @@ export function FillMyDayTray({ circleId, backlogTasks, gapMinutes, today }: Fil
   if (suggestions.length === 0) return null
 
   return (
-    <div className="mx-4 mb-2 flex flex-col gap-2 rounded-2xl bg-circle-empty/60 p-3">
-      <div className="flex items-center justify-between">
-        <p className="font-display text-sm text-text-primary">The goose is still hungry — {gapMinutes}m to go:</p>
+    <div className="card relative flex flex-col gap-2 bg-[#fde9d4] pt-5">
+      <Washi className="absolute -top-2.5 left-1/2 -translate-x-1/2" rotate={3} />
+      <div className="flex items-start justify-between gap-2">
+        <div>
+          <h2 className="hand-label text-lg">snack ideas:</h2>
+          <p className="font-hand text-base font-bold text-text-secondary">
+            The goose is still hungry — {gapMinutes}m to go:
+          </p>
+        </div>
         <button
           type="button"
           onClick={() => dismissFillMyDay(today)}
           aria-label="Dismiss Fill My Day suggestions"
-          className="p-1 text-text-secondary"
+          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-paper/70 font-display text-sm text-text-secondary"
         >
-          <X size={16} />
+          ✕
         </button>
       </div>
       <div className="flex flex-wrap gap-2">
-        {suggestions.map((task) => (
+        {suggestions.map((task, i) => (
           <button
             key={task.id}
             type="button"
             onClick={() => attemptCapacityMutation({ kind: 'addTaskToCircle', circleId, taskId: task.id })}
-            className="rounded-2xl bg-background px-3 py-1.5 font-body text-sm text-text-primary"
+            className="chip animate-pop-in border-carrot/40 hover:-rotate-2"
+            style={{ animationDelay: `${i * 60}ms` }}
           >
-            {task.title} · {task.remainingMinutes}m
+            + {task.title} · {task.remainingMinutes}m
           </button>
         ))}
       </div>

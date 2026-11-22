@@ -75,7 +75,7 @@ function TriageGroup({
                 key={t.taskId}
                 type="button"
                 onClick={() => resolveSplit(circleId, t.taskId, suggested)}
-                className="rounded-2xl bg-circle-empty px-4 py-2 text-left font-body text-sm text-text-primary"
+                className="rounded-[20px] bg-paper px-4 py-2.5 ring-2 ring-butter text-left font-body text-sm text-text-primary"
               >
                 Split "{task.title}" — keep {keep}m now, {suggested}m back to the pantry
               </button>
@@ -94,7 +94,7 @@ function TriageGroup({
                 key={t.taskId}
                 type="button"
                 onClick={() => resolveReturnToBacklog(circleId, t.taskId)}
-                className="rounded-2xl bg-circle-empty px-4 py-2 text-left font-body text-sm text-text-primary"
+                className="rounded-[20px] bg-paper px-4 py-2.5 ring-2 ring-butter text-left font-body text-sm text-text-primary"
               >
                 {task.title} ({task.remainingMinutes}m)
               </button>
@@ -121,7 +121,7 @@ function TriageGroup({
                 key={t.taskId}
                 type="button"
                 onClick={() => resolveDelete(circleId, t.taskId)}
-                className="rounded-2xl bg-warning/10 px-4 py-2 text-left font-body text-sm text-warning"
+                className="rounded-[20px] bg-blush/25 px-4 py-2 text-left font-body text-sm text-warning"
               >
                 Delete "{task.title}"
               </button>
@@ -142,7 +142,7 @@ function TriageGroup({
         <button
           type="button"
           onClick={() => resolveGrowStomach(circleId, group.suggestedStomachMinutes!)}
-          className="rounded-2xl bg-primary px-4 py-3 font-display text-base text-background"
+          className="btn-main text-lg"
         >
           Grow the stomach to {group.suggestedStomachMinutes}m
         </button>
@@ -155,7 +155,7 @@ function TriageGroup({
 function TriageSection({ title, children }: { title: string; children: ReactNode }) {
   return (
     <div className="flex flex-col gap-2">
-      <h3 className="font-display text-sm text-text-primary">{title}</h3>
+      <h3 className="hand-label text-lg">{title}</h3>
       {children}
     </div>
   )
@@ -187,7 +187,7 @@ function ShrinkRow({
   }
 
   return (
-    <div className="flex items-center gap-2 rounded-2xl bg-circle-empty px-4 py-2">
+    <div className="flex items-center gap-2 rounded-[20px] bg-paper px-4 py-2.5 ring-2 ring-butter">
       <span className="flex-1 font-body text-sm text-text-primary">{task.title}</span>
       <input
         type="number"
@@ -195,9 +195,9 @@ function ShrinkRow({
         max={task.remainingMinutes - 1}
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        className="w-16 rounded-lg border border-primary/40 bg-background px-2 py-1 text-center font-body text-sm"
+        className="w-16 input-cute px-2 py-1 text-center font-body text-sm"
       />
-      <button type="button" onClick={handleShrink} className="rounded-lg bg-primary px-3 py-1 font-body text-sm text-background">
+      <button type="button" onClick={handleShrink} className="rounded-full bg-primary px-3 py-1 font-hand text-base font-bold text-text-primary">
         Shrink
       </button>
     </div>
@@ -211,19 +211,19 @@ function MoveDeadlineRow({ circleId, taskId, task }: { circleId: string; taskId:
   if (!task) return null
 
   return (
-    <div className="flex items-center gap-2 rounded-2xl bg-circle-empty px-4 py-2">
+    <div className="flex items-center gap-2 rounded-[20px] bg-paper px-4 py-2.5 ring-2 ring-butter">
       <span className="flex-1 font-body text-sm text-text-primary">{task.title}</span>
       <input
         type="date"
         min={tomorrow}
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        className="rounded-lg border border-primary/40 bg-background px-2 py-1 font-body text-sm"
+        className="input-cute px-2 py-1 font-body text-sm"
       />
       <button
         type="button"
         onClick={() => resolveMoveDeadline(circleId, taskId, value)}
-        className="rounded-lg bg-primary px-3 py-1 font-body text-sm text-background"
+        className="rounded-full bg-primary px-3 py-1 font-hand text-base font-bold text-text-primary"
       >
         Move
       </button>

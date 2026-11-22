@@ -42,7 +42,7 @@ export function ReflectionSheet() {
 
         {pantryCount > 0 && (
           <div className="flex flex-col gap-2">
-            <h3 className="font-display text-sm text-text-primary">Back in the pantry</h3>
+            <h3 className="hand-label text-lg">Back in the pantry</h3>
             {pantryTaskIds.map((taskId) => {
               const task = taskById.get(taskId)
               if (!task) return null
@@ -56,7 +56,7 @@ export function ReflectionSheet() {
         <button
           type="button"
           onClick={closeReflection}
-          className="rounded-2xl bg-primary px-4 py-3 font-display text-base text-background"
+          className="btn-main text-lg"
         >
           Done
         </button>

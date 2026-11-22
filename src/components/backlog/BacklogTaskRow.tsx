@@ -20,7 +20,7 @@ export function BacklogTaskRow({ task, onEdit, onDelete, onAddToToday }: Backlog
   const emoji = FOOD_EMOJI[getFoodSize(task.remainingMinutes)]
 
   return (
-    <div className="flex items-center gap-3 rounded-2xl bg-circle-empty/50 px-4 py-3">
+    <div className="flex items-center gap-3 card px-4 py-3">
       <button
         type="button"
         onClick={() => onEdit(task)}

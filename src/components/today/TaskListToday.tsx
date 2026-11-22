@@ -3,6 +3,7 @@ import { TaskRow } from '@/components/today/TaskRow'
 import { NibbleModal } from '@/components/today/NibbleModal'
 import { AddTaskSheet, type TaskFormValues } from '@/components/backlog/AddTaskSheet'
 import { editPlannedTask, reorderPlannedTasks, nibbleTask } from '@/lib/mutations/taskMutations'
+import { useUIStore } from '@/stores/useUIStore'
 import type { Task } from '@/types/models'
 
 interface TaskListTodayProps {
@@ -13,6 +14,7 @@ interface TaskListTodayProps {
 
 export function TaskListToday({ circleId, tasks, today }: TaskListTodayProps) {
   const [draggingId, setDraggingId] = useState<string | null>(null)
+  const [openId, setOpenId] = useState<string | null>(null)
   const [nibbleTarget, setNibbleTarget] = useState<Task | null>(null)
   const [editTarget, setEditTarget] = useState<Task | null>(null)
 
@@ -37,12 +39,19 @@ export function TaskListToday({ circleId, tasks, today }: TaskListTodayProps) {
   }
 
   return (
-    <div className="flex flex-col gap-2 p-4">
+    <div className="flex flex-col gap-2">
+      {tasks.length === 0 && (
+        <p className="py-2 text-center font-hand text-lg font-bold text-text-secondary">
+          the plate is empty… the goose is peckish 🥺
+        </p>
+      )}
       {tasks.map((task) => (
         <TaskRow
           key={task.id}
           task={task}
           today={today}
+          open={openId === task.id}
+          onToggle={() => setOpenId(openId === task.id ? null : task.id)}
           onNibble={setNibbleTarget}
           onEdit={setEditTarget}
           onDragStart={() => setDraggingId(task.id)}
@@ -50,6 +59,19 @@ export function TaskListToday({ circleId, tasks, today }: TaskListTodayProps) {
           onDrop={() => handleDrop(task.id)}
         />
       ))}
+
+      {/* Write-in line at the bottom of the list, like a blank planner row. */}
+      <button
+        type="button"
+        onClick={() => useUIStore.getState().openModal('addTask')}
+        className="group flex items-center gap-3 rounded-[20px] border-2 border-dashed border-butter-deep px-3 py-2.5 text-left transition-colors hover:bg-paper/60"
+      >
+        <span className="flex h-7 w-7 items-center justify-center rounded-full bg-primary font-display text-lg leading-none transition-transform group-hover:rotate-90">
+          +
+        </span>
+        <span className="font-hand text-lg font-bold text-text-secondary">jot down something yummy…</span>
+      </button>
+
       <NibbleModal task={nibbleTarget} onClose={() => setNibbleTarget(null)} onSubmit={nibbleTask} />
       <AddTaskSheet
         open={editTarget !== null}

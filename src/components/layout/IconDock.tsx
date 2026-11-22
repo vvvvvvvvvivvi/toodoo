@@ -1,36 +1,56 @@
-import { History, ListTodo, Plus, Settings, Trophy } from 'lucide-react'
 import { useUIStore, type Modal } from '@/stores/useUIStore'
 
-// Add Task is the primary CTA (filled/primary color); the rest are neutral
-// navigation into their respective modal.
-const ICONS: { modal: Modal; label: string; icon: typeof ListTodo; primary?: boolean }[] = [
-  { modal: 'addTask', label: 'Add task', icon: Plus, primary: true },
-  { modal: 'backlog', label: 'Backlog', icon: ListTodo },
-  { modal: 'history', label: 'History', icon: History },
-  { modal: 'pooPile', label: 'Poo Pile', icon: Trophy },
-  { modal: 'settings', label: 'Settings', icon: Settings },
+type DockItem = { modal: Modal; label: string; emoji: string }
+
+const LEFT: DockItem[] = [
+  { modal: 'backlog', label: 'Pantry', emoji: '🥫' },
+  { modal: 'history', label: 'History', emoji: '📖' },
+]
+const RIGHT: DockItem[] = [
+  { modal: 'pooPile', label: 'Poo Pile', emoji: '💩' },
+  { modal: 'settings', label: 'Settings', emoji: '⚙️' },
 ]
 
-// Docked top-right, always reachable — the only "navigation" left now that
-// Today is the sole page. Icon-only by design (visual-first over wordy).
+function DockButton({ item }: { item: DockItem }) {
+  const openModal = useUIStore((s) => s.openModal)
+  return (
+    <button
+      type="button"
+      onClick={() => openModal(item.modal)}
+      aria-label={item.label}
+      className="group flex w-14 flex-col items-center gap-0.5 rounded-2xl py-1"
+    >
+      <span className="text-xl transition-transform group-hover:-translate-y-0.5 group-active:scale-90">
+        {item.emoji}
+      </span>
+      <span className="font-hand text-sm font-bold lowercase leading-none text-text-secondary">{item.label}</span>
+    </button>
+  )
+}
+
+// Floating bottom dock. Add Task sits in the middle as a big round "feed me"
+// button — the main thing you do here.
 export function IconDock() {
   const openModal = useUIStore((s) => s.openModal)
 
   return (
-    <div className="fixed right-3 top-3 z-30 flex gap-1.5">
-      {ICONS.map(({ modal, label, icon: Icon, primary }) => (
+    <nav className="fixed inset-x-0 bottom-3 z-30 flex justify-center px-4">
+      <div className="flex items-center gap-1 rounded-full bg-paper/95 px-3 py-1.5 shadow-[0_6px_24px_rgb(59_42_30/0.14)] ring-2 ring-butter">
+        {LEFT.map((item) => (
+          <DockButton key={item.modal} item={item} />
+        ))}
         <button
-          key={modal}
           type="button"
-          onClick={() => openModal(modal)}
-          aria-label={label}
-          className={`flex h-10 w-10 items-center justify-center rounded-full shadow-sm ${
-            primary ? 'bg-primary text-background' : 'bg-circle-empty/80 text-text-primary'
-          }`}
+          onClick={() => openModal('addTask')}
+          aria-label="Add task"
+          className="-mt-8 mx-1 flex h-16 w-16 items-center justify-center rounded-full bg-primary font-display text-4xl text-text-primary shadow-[0_5px_0_var(--color-primary-deep)] ring-4 ring-background transition-transform hover:rotate-6 active:translate-y-1 active:shadow-[0_1px_0_var(--color-primary-deep)]"
         >
-          <Icon size={20} />
+          +
         </button>
-      ))}
-    </div>
+        {RIGHT.map((item) => (
+          <DockButton key={item.modal} item={item} />
+        ))}
+      </div>
+    </nav>
   )
 }
