@@ -1,0 +1,91 @@
+@import 'tailwindcss';
+@import '@fontsource/fredoka/400.css';
+@import '@fontsource/fredoka/600.css';
+@import '@fontsource/nunito-sans/400.css';
+@import '@fontsource/nunito-sans/700.css';
+
+@theme {
+  --color-background: #fff8ec;
+  --color-primary: #f4a63b;
+  --color-accent: #6bbf59;
+  --color-warning: #e85d4a;
+  --color-circle-empty: #efe3cc;
+  --color-text-primary: #2b2117;
+  --color-text-secondary: #8a7a64;
+  --color-poo: #8b5e3c;
+
+  --font-display: 'Fredoka', system-ui, sans-serif;
+  --font-body: 'Nunito Sans', system-ui, sans-serif;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+}
+
+/* Honk shake — feedback for attempting to return/delete a locked task.
+   The prefers-reduced-motion rule above already zeroes animation-duration
+   globally, so this degrades to a no-op automatically. */
+@keyframes shake {
+  10%,
+  90% {
+    transform: translateX(-1px);
+  }
+  20%,
+  80% {
+    transform: translateX(2px);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translateX(-4px);
+  }
+  40%,
+  60% {
+    transform: translateX(4px);
+  }
+}
+
+.animate-shake {
+  animation: shake 0.4s ease-in-out;
+}
+
+/* Completion micro-animation — a quick digesting pulse before the row
+   leaves the planned list. Also respects prefers-reduced-motion above. */
+@keyframes complete-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  40% {
+    transform: scale(1.04);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.98);
+    opacity: 0.5;
+  }
+}
+
+.animate-complete-pulse {
+  animation: complete-pulse 0.2s ease-out forwards;
+}
