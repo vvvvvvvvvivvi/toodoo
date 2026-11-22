@@ -25,7 +25,7 @@ export function IntroCards() {
 
   return (
     <div className="mx-auto flex h-full max-w-[480px] flex-col items-center justify-center gap-8 p-8 text-center">
-      <p className="hand-label text-xl text-text-secondary">hi, I'm the toodoo goose</p>
+      <p className="hand-label text-xl text-text-secondary">hi, I'm duck2</p>
 
       <div key={index} className="relative flex h-56 w-64 animate-pop-in items-center justify-center">
         <div className="blob absolute inset-0 bg-butter" />

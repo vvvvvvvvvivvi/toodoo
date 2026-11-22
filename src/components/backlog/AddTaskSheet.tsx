@@ -39,7 +39,7 @@ interface AddTaskSheetProps {
   onSubmit: (input: TaskFormValues) => Promise<void>
 }
 
-// Adding a task is a tiny conversation with the goose rather than a form:
+// Adding a task is a tiny conversation with duck2 rather than a form:
 // name it → pick a bite size → (optional) sprinkle on a due date or tags →
 // feed it. Each step slides in once the previous one has an answer, and
 // Enter on the name feeds it straight away with the default bite size.
@@ -118,7 +118,7 @@ export function AddTaskSheet({ open, onClose, mode, initialTask, submitLabel, on
     e?.preventDefault()
     if (submitting) return
     if (!title.trim()) {
-      setError('Give it a name, the goose needs to know what it is.')
+      setError('Give it a name, duck2 needs to know what it is.')
       titleRef.current?.focus()
       return
     }
@@ -143,9 +143,9 @@ export function AddTaskSheet({ open, onClose, mode, initialTask, submitLabel, on
   }
 
   return (
-    <Sheet open={open} onClose={onClose} title={isEdit ? 'Tweak the recipe' : 'Feed the goose'}>
+    <Sheet open={open} onClose={onClose} title={isEdit ? 'Tweak the recipe' : 'Feed duck2'}>
       <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-        {/* The goose talks you through it. */}
+        {/* duck2 talks you through it. */}
         <div className="flex items-end gap-2">
           <Duck size={40} className="shrink-0 animate-bob" />
           <p
@@ -319,7 +319,7 @@ export function AddTaskSheet({ open, onClose, mode, initialTask, submitLabel, on
           disabled={submitting}
           className={`btn-main text-lg transition-opacity ${!isEdit && !hasTitle ? 'opacity-50' : ''}`}
         >
-          {isEdit ? 'Save changes' : (submitLabel ?? 'Feed it to the goose')}
+          {isEdit ? 'Save changes' : (submitLabel ?? 'Feed it to duck2')}
         </button>
       </form>
     </Sheet>

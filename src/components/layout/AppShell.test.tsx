@@ -58,7 +58,7 @@ describe('AppShell icon dock', () => {
     await user.click(screen.getByRole('button', { name: 'Add task' }))
     await user.type(screen.getByPlaceholderText(/what needs doing/i), 'From the dock')
     await user.click(screen.getByRole('button', { name: '30m' }))
-    await user.click(screen.getByRole('button', { name: /feed it to the goose/i }))
+    await user.click(screen.getByRole('button', { name: /feed it to duck2/i }))
 
     await waitFor(() => {
       const created = useTaskStore.getState().tasks.find((t) => t.title === 'From the dock')

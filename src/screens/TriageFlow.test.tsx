@@ -80,13 +80,13 @@ describe('Save-gate: circle creation auto-activates, or opens triage if already 
     await user.click(screen.getByRole('button', { name: '8h' })) // 480m — less than the overdue task's 500m
     await user.click(screen.getByRole('button', { name: /let's go/i }))
 
-    expect(await screen.findByText("That's more than the goose can stomach")).toBeInTheDocument()
+    expect(await screen.findByText("That's more than duck2 can stomach")).toBeInTheDocument()
     expect(useCircleStore.getState().circles[0].state).toBe('planning') // not activated yet
 
     await user.click(screen.getByRole('button', { name: /grow the stomach to 500m/i }))
 
     await waitFor(() => expect(useCircleStore.getState().circles[0].state).toBe('active'))
-    expect(screen.queryByText("That's more than the goose can stomach")).not.toBeInTheDocument()
+    expect(screen.queryByText("That's more than duck2 can stomach")).not.toBeInTheDocument()
   })
 })
 
@@ -167,7 +167,7 @@ describe('Backlog "Add to Today" blocked mutation replays after triage resolutio
 
     await user.click(screen.getByRole('button', { name: /add task to today/i }))
 
-    expect(await screen.findByText("That's more than the goose can stomach")).toBeInTheDocument()
+    expect(await screen.findByText("That's more than duck2 can stomach")).toBeInTheDocument()
     expect(useUIStore.getState().triage?.pendingRequest).toEqual({
       kind: 'addTaskToCircle',
       circleId: 'c1',

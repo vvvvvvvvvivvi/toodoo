@@ -58,7 +58,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         open={activeModal === 'addTask'}
         onClose={closeModal}
         mode="add"
-        submitLabel={openCircle ? 'Feed it to the goose' : 'Tuck into the pantry'}
+        submitLabel={openCircle ? 'Feed it to duck2' : 'Tuck into the pantry'}
         onSubmit={handleAddTask}
       />
 

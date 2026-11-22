@@ -45,7 +45,7 @@ export function TaskListToday({ circleId, tasks, today }: TaskListTodayProps) {
         <div className="flex flex-col items-center gap-1 py-3">
           <LoungingDuck size={130} />
           <p className="text-center font-hand text-lg font-bold text-text-secondary">
-            the plate is empty… the goose is peckish
+            the plate is empty… duck2 is peckish
           </p>
         </div>
       )}

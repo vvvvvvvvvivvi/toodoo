@@ -162,7 +162,7 @@ describe('Fill My Day tray (Invariant 9)', () => {
 
     render(<TodayScreen />)
 
-    expect(screen.getByText(/the goose is still hungry — 70m to go/i)).toBeInTheDocument()
+    expect(screen.getByText(/duck2 is still hungry — 70m to go/i)).toBeInTheDocument()
     expect(screen.getByText(/Quick win/)).toBeInTheDocument()
 
     await user.click(screen.getByRole('button', { name: /Quick win/ }))
@@ -183,11 +183,11 @@ describe('Fill My Day tray (Invariant 9)', () => {
     await seedBacklogTask({ id: 'suggestion', title: 'Quick win', remainingMinutes: 20 })
 
     render(<TodayScreen />)
-    expect(screen.getByText(/the goose is still hungry/i)).toBeInTheDocument()
+    expect(screen.getByText(/duck2 is still hungry/i)).toBeInTheDocument()
 
     await user.click(screen.getByRole('button', { name: /dismiss fill my day suggestions/i }))
 
-    await waitFor(() => expect(screen.queryByText(/the goose is still hungry/i)).not.toBeInTheDocument())
+    await waitFor(() => expect(screen.queryByText(/duck2 is still hungry/i)).not.toBeInTheDocument())
     expect(useSettingsStore.getState().settings.fillMyDayDismissedDate).toBe(today)
   })
 
@@ -199,7 +199,7 @@ describe('Fill My Day tray (Invariant 9)', () => {
     await seedBacklogTask({ id: 'suggestion', title: 'Quick win', remainingMinutes: 20 })
 
     render(<TodayScreen />)
-    expect(screen.queryByText(/the goose is still hungry/i)).not.toBeInTheDocument()
+    expect(screen.queryByText(/duck2 is still hungry/i)).not.toBeInTheDocument()
   })
 })
 

@@ -44,11 +44,11 @@ export function TodayScreen() {
   const showFillMyDay = gapMinutes > 0 && settings.fillMyDayDismissedDate !== today
 
   return (
-    // Phone: one column. Wider screens: a two-page planner spread — the goose
+    // Phone: one column. Wider screens: a two-page planner spread — duck2
     // and its tummy on the left page, a tall to-do list on the right.
     <div className="flex flex-col gap-5 px-4 pb-6 pt-5 lg:grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:min-h-full lg:items-stretch lg:gap-8 lg:px-8 lg:pt-8">
       <div className="flex flex-col gap-5">
-        {/* Planner header: hand-lettered title on a soft blob, goose perched beside it. */}
+        {/* Planner header: hand-lettered title on a soft blob, duck2 perched beside it. */}
         <header className="relative flex items-center justify-center pt-2">
           <div className="blob absolute left-1/2 top-0 h-[120px] w-[250px] -translate-x-1/2 bg-butter/80" />
           <Sparkle size={18} className="absolute left-6 top-4" delay={0.4} />
@@ -81,7 +81,7 @@ export function TodayScreen() {
             }
             className="relative -rotate-1 animate-wiggle rounded-[20px] border-2 border-dashed border-warning/50 bg-paper px-4 py-3 text-left font-hand text-lg font-bold leading-snug text-warning"
           >
-            That's more than the goose can stomach — {capacity.overflowMinutes}m over. Tap to sort it out.
+            That's more than duck2 can stomach — {capacity.overflowMinutes}m over. Tap to sort it out.
           </button>
         )}
 

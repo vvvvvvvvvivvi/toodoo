@@ -31,7 +31,7 @@ export function TriageModal() {
   const taskById = new Map(tasks.map((t) => [t.id, t]))
 
   return (
-    <Sheet open title="That's more than the goose can stomach" onClose={closeTriage}>
+    <Sheet open title="That's more than duck2 can stomach" onClose={closeTriage}>
       <div className="flex flex-col gap-5">
         <p className="font-body text-sm text-warning">{triage.overflowMinutes}m over the stomach's limit.</p>
         {groups.map((group) => (

@@ -22,7 +22,7 @@ export function FillMyDayTray({ circleId, backlogTasks, gapMinutes, today }: Fil
         <div>
           <h2 className="hand-label text-lg">snack ideas:</h2>
           <p className="font-hand text-base font-bold text-text-secondary">
-            The goose is still hungry — {gapMinutes}m to go:
+            duck2 is still hungry — {gapMinutes}m to go:
           </p>
         </div>
         <button
