@@ -48,6 +48,18 @@ body,
   height: 100%;
 }
 
+/* Full-screen app feel (especially launched from the home screen): fill the
+   dynamic viewport, no rubber-band bounce of the whole page, no grey tap
+   flash. Scrolling still happens inside <main>. */
+html,
+body {
+  overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent;
+}
+#root {
+  height: 100dvh;
+}
+
 body {
   margin: 0;
   background-color: var(--color-background);
@@ -57,6 +69,16 @@ body {
 }
 
 @layer components {
+  /* Safe-area helpers for notches, the status bar, and the home indicator.
+     env() is 0 in a normal browser tab, so these are no-ops there. */
+  .safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  .safe-x {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+
   /* Hand-lettered section label, like "TO DO LIST:" on a paper planner. */
   .hand-label {
     font-family: var(--font-hand);

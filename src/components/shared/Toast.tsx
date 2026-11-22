@@ -17,7 +17,7 @@ export function Toast() {
   if (!toast) return null
 
   return (
-    <div className="pointer-events-none fixed inset-x-0 top-4 z-[60] flex justify-center px-4">
+    <div className="pointer-events-none fixed inset-x-0 top-[calc(1rem+env(safe-area-inset-top))] z-[60] flex justify-center px-4">
       <div
         key={toast}
         role="status"

@@ -48,7 +48,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       {/* One quiet corner doodle on wide screens; phones stay uncluttered. */}
       <LoungingDuck size={170} className="fixed bottom-4 left-6 z-0 hidden lg:block" />
 
-      <main className="relative z-10 flex-1 overflow-y-auto pb-28">
+      <main className="safe-top safe-x relative z-10 flex-1 overflow-y-auto overscroll-contain pb-[calc(7rem+env(safe-area-inset-bottom))]">
         <div className="mx-auto h-full w-full max-w-[480px] md:max-w-[620px] lg:max-w-[1080px]">{children}</div>
       </main>
       <IconDock />

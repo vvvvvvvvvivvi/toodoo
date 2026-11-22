@@ -37,7 +37,7 @@ export function IconDock() {
   const openModal = useUIStore((s) => s.openModal)
 
   return (
-    <nav className="fixed inset-x-0 bottom-3 z-30 flex justify-center px-4">
+    <nav className="fixed inset-x-0 bottom-[calc(0.75rem+env(safe-area-inset-bottom))] z-30 flex justify-center px-4">
       <div className="flex items-center gap-1 rounded-full bg-paper/95 px-3 py-1.5 shadow-[0_6px_24px_rgb(59_42_30/0.14)] ring-2 ring-text-primary/10">
         {LEFT.map((item) => (
           <DockButton key={item.modal} item={item} />

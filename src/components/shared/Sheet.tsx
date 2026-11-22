@@ -22,7 +22,7 @@ export function Sheet({ open, onClose, title, children }: SheetProps) {
       <div
         role="dialog"
         aria-label={title}
-        className="relative mx-auto flex max-h-[88vh] w-full max-w-[480px] animate-sheet-up flex-col rounded-t-[40px] bg-background px-5 pb-6 pt-7 shadow-[0_-6px_30px_rgb(59_42_30/0.12)] md:max-h-[85vh] md:max-w-[560px] md:rounded-[40px] md:px-7 md:shadow-[0_12px_40px_rgb(59_42_30/0.18)]"
+        className="relative mx-auto flex max-h-[calc(100dvh-env(safe-area-inset-top)-1rem)] w-full max-w-[480px] animate-sheet-up flex-col rounded-t-[40px] bg-background px-5 pb-[calc(1.5rem+env(safe-area-inset-bottom))] pt-7 shadow-[0_-6px_30px_rgb(59_42_30/0.12)] md:max-h-[85vh] md:max-w-[560px] md:rounded-[40px] md:px-7 md:pb-6 md:shadow-[0_12px_40px_rgb(59_42_30/0.18)]"
         onClick={(e) => e.stopPropagation()}
       >
         <Washi className="absolute -top-2 left-1/2 -translate-x-1/2" rotate={-3} />

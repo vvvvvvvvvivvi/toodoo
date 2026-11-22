@@ -4,7 +4,16 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="theme-color" content="#fffdf7" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Home-screen icons: iOS only reads a PNG apple-touch-icon (never the SVG
+         favicon); Android reads the icons listed in the web app manifest. -->
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="apple-mobile-web-app-title" content="toodoo" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <!-- Draw under the status bar (content is padded by the safe-area insets). -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>toodoo</title>
   </head>
   <body>
