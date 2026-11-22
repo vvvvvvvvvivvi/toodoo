@@ -48,22 +48,23 @@ export function Washi({ className = '', rotate = -4 }: { className?: string; rot
   return <div aria-hidden className={`washi pointer-events-none ${className}`} style={{ rotate: `${rotate}deg` }} />
 }
 
-/** Round duck-face badge — the app logo (also the favicon). */
+/** Round duck-face badge — the app logo (also the favicon and home-screen
+ *  icon). Unlike the full-body ducks it's drawn clean and symmetric, with no
+ *  off-register fill, so it stays crisp at tiny sizes. */
 export function DuckFace({ size = 64, className = '' }: { size?: number; className?: string }) {
   return (
     <svg aria-hidden width={size} height={size} viewBox="0 0 100 100" className={`pointer-events-none ${className}`}>
-      <circle cx="47" cy="54" r="41" fill={BODY} />
-      <circle cx="50" cy="50" r="41" fill="none" stroke={INK} strokeWidth="5" />
-      <circle cx="40" cy="43" r="4" fill={INK} />
-      <circle cx="61" cy="42" r="4" fill={INK} />
+      <circle cx="50" cy="50" r="43" fill={BODY} stroke={INK} strokeWidth="5" />
+      <circle cx="37" cy="43" r="4.8" fill={INK} />
+      <circle cx="63" cy="43" r="4.8" fill={INK} />
       <path
-        d="M33 57 C40 49 62 49 68 56 C63 64 40 66 33 57 Z"
+        d="M29 58 C31 49 69 49 71 58 C69 68 31 68 29 58 Z"
         fill={BILL}
         stroke={INK}
-        strokeWidth="4"
+        strokeWidth="3.2"
         strokeLinejoin="round"
       />
-      <path d="M37 57.5 Q50 60 64 56.5" stroke={INK} strokeWidth="2.6" fill="none" strokeLinecap="round" />
+      <path d="M32 58.5 Q50 61 68 58.5" stroke={INK} strokeWidth="2.2" fill="none" strokeLinecap="round" />
     </svg>
   )
 }

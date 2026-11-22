@@ -1,9 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <!-- toodoo duck: off-register butter fill under a thick ink outline -->
-  <circle cx="47" cy="54" r="42" fill="#f8dc93"/>
-  <circle cx="50" cy="50" r="42" fill="none" stroke="#2e2219" stroke-width="7"/>
-  <circle cx="39" cy="42" r="5.5" fill="#2e2219"/>
-  <circle cx="62" cy="41" r="5.5" fill="#2e2219"/>
-  <path d="M30 58 C38 48 63 48 71 57 C65 67 38 69 30 58 Z" fill="#f0a04b" stroke="#2e2219" stroke-width="5.5" stroke-linejoin="round"/>
-  <path d="M35 58.5 Q50 61.5 66 57.5" stroke="#2e2219" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+  <!-- toodoo logo: duck2, clean and symmetric so it reads at 16px -->
+  <circle cx="50" cy="50" r="43" fill="#f8dc93" stroke="#2e2219" stroke-width="5"/>
+  <circle cx="37" cy="43" r="4.8" fill="#2e2219"/>
+  <circle cx="63" cy="43" r="4.8" fill="#2e2219"/>
+  <path d="M29 58 C31 49 69 49 71 58 C69 68 31 68 29 58 Z" fill="#f0a04b" stroke="#2e2219" stroke-width="3.2" stroke-linejoin="round"/>
+  <path d="M32 58.5 Q50 61 68 58.5" stroke="#2e2219" stroke-width="2.2" fill="none" stroke-linecap="round"/>
 </svg>
