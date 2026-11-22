@@ -4,7 +4,7 @@ import { TriageModal } from '@/components/today/TriageModal'
 import { ReflectionSheet } from '@/components/reflection/ReflectionSheet'
 import { Sheet } from '@/components/shared/Sheet'
 import { Toast } from '@/components/shared/Toast'
-import { Carrots, GooseFace } from '@/components/shared/Decor'
+import { LoungingDuck } from '@/components/shared/Decor'
 import { AddTaskSheet, type TaskFormValues } from '@/components/backlog/AddTaskSheet'
 import { useUIStore } from '@/stores/useUIStore'
 import { useCircleStore } from '@/stores/useCircleStore'
@@ -45,8 +45,8 @@ export function AppShell({ children }: { children: ReactNode }) {
     // screens. Fixed layers (dock, sheets, toast) cover the real viewport.
     <div className="relative flex h-full flex-col">
       {/* Corner doodles, behind everything. */}
-      <GooseFace size={120} className="fixed -bottom-8 -left-8 z-0 rotate-12 opacity-90 md:size-[170px]" />
-      <Carrots className="fixed -right-3 bottom-16 z-0 md:right-6 md:scale-125" />
+      {/* One quiet corner doodle on wide screens; phones stay uncluttered. */}
+      <LoungingDuck size={170} className="fixed bottom-4 left-6 z-0 hidden lg:block" />
 
       <main className="relative z-10 flex-1 overflow-y-auto pb-28">
         <div className="mx-auto h-full w-full max-w-[480px] md:max-w-[620px] lg:max-w-[1080px]">{children}</div>
@@ -58,7 +58,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         open={activeModal === 'addTask'}
         onClose={closeModal}
         mode="add"
-        submitLabel={openCircle ? 'Feed it to the goose 🪿' : 'Tuck into the pantry 🥫'}
+        submitLabel={openCircle ? 'Feed it to the goose' : 'Tuck into the pantry'}
         onSubmit={handleAddTask}
       />
 

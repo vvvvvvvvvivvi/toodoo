@@ -29,7 +29,7 @@ export function MoodPicker({ selected, onPick }: MoodPickerProps) {
               aria-pressed={active}
               className={`flex w-20 flex-col items-center gap-1 rounded-[24px] border-2 py-2 transition-all ${
                 active
-                  ? '-translate-y-1 -rotate-3 border-primary-deep bg-primary shadow-[0_4px_0_var(--color-primary-deep)]'
+                  ? '-translate-y-1 -rotate-3 border-text-primary bg-butter-deep shadow-[0_3px_0_var(--color-text-primary)]'
                   : 'border-butter-deep bg-paper'
               }`}
             >

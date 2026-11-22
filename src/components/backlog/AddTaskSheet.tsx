@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type FormEvent, type KeyboardEvent } from 'react'
 import { Sheet } from '@/components/shared/Sheet'
-import { GooseFace } from '@/components/shared/Decor'
+import { CalendarDays, Tag } from 'lucide-react'
+import { Duck } from '@/components/shared/Decor'
 import { EstimateChips } from '@/components/backlog/EstimateChips'
 import { PORTIONS } from '@/components/backlog/portions'
 import { addDays, localToday } from '@/lib/utils/date'
@@ -146,7 +147,7 @@ export function AddTaskSheet({ open, onClose, mode, initialTask, submitLabel, on
       <form onSubmit={handleSubmit} className="flex flex-col gap-5">
         {/* The goose talks you through it. */}
         <div className="flex items-end gap-2">
-          <GooseFace size={54} className="shrink-0 animate-bob" />
+          <Duck size={40} className="shrink-0 animate-bob" />
           <p
             key={gooseLine}
             className="relative animate-pop-in rounded-[22px] rounded-bl-md bg-butter px-4 py-2 font-hand text-xl font-bold leading-tight text-text-primary"
@@ -236,7 +237,8 @@ export function AddTaskSheet({ open, onClose, mode, initialTask, submitLabel, on
                 }}
                 className={`chip ${showDeadline ? 'chip-on' : ''}`}
               >
-                📅 due date
+                <CalendarDays size={15} className="-mt-0.5 mr-1 inline" />
+                due date
               </button>
               <button
                 type="button"
@@ -244,7 +246,8 @@ export function AddTaskSheet({ open, onClose, mode, initialTask, submitLabel, on
                 onClick={() => setShowTags(!showTags)}
                 className={`chip ${showTags ? 'chip-on' : ''}`}
               >
-                🏷️ tags
+                <Tag size={15} className="-mt-0.5 mr-1 inline" />
+                tags
               </button>
             </div>
 
@@ -284,7 +287,7 @@ export function AddTaskSheet({ open, onClose, mode, initialTask, submitLabel, on
                     type="button"
                     onClick={() => setTags(tags.filter((t) => t !== tag))}
                     aria-label={`Remove tag ${tag}`}
-                    className="animate-pop-in rounded-full bg-blush/30 px-2.5 py-0.5 font-hand text-base font-bold text-text-primary"
+                    className="animate-pop-in rounded-full bg-butter-deep/70 px-2.5 py-0.5 font-hand text-base font-bold text-text-primary"
                   >
                     #{tag} ×
                   </button>
@@ -306,7 +309,7 @@ export function AddTaskSheet({ open, onClose, mode, initialTask, submitLabel, on
         )}
 
         {error && (
-          <p role="alert" className="animate-reveal rounded-2xl bg-blush/20 px-3 py-2 font-hand text-lg font-bold text-warning">
+          <p role="alert" className="animate-reveal rounded-2xl border-2 border-dashed border-warning/40 px-3 py-2 font-hand text-lg font-bold text-warning">
             {error}
           </p>
         )}
@@ -316,7 +319,7 @@ export function AddTaskSheet({ open, onClose, mode, initialTask, submitLabel, on
           disabled={submitting}
           className={`btn-main text-lg transition-opacity ${!isEdit && !hasTitle ? 'opacity-50' : ''}`}
         >
-          {isEdit ? 'Save changes' : (submitLabel ?? 'Feed it to the goose 🪿')}
+          {isEdit ? 'Save changes' : (submitLabel ?? 'Feed it to the goose')}
         </button>
       </form>
     </Sheet>

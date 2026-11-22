@@ -1,3 +1,4 @@
+import { Pencil } from 'lucide-react'
 import { PORTIONS } from '@/components/backlog/portions'
 
 interface EstimateChipsProps {
@@ -11,7 +12,7 @@ export function EstimateChips({ minutes, isCustom, onSelectPreset, onSelectCusto
   const cardClass = (active: boolean) =>
     `flex flex-col items-center gap-0.5 rounded-[22px] border-2 px-1 py-2 transition-all duration-200 ${
       active
-        ? '-translate-y-1 -rotate-2 border-primary-deep bg-primary shadow-[0_4px_0_var(--color-primary-deep)]'
+        ? '-translate-y-1 -rotate-2 border-text-primary bg-butter-deep shadow-[0_3px_0_var(--color-text-primary)]'
         : 'border-butter-deep bg-paper hover:-translate-y-0.5'
     }`
 
@@ -41,7 +42,7 @@ export function EstimateChips({ minutes, isCustom, onSelectPreset, onSelectCusto
         onClick={onSelectCustom}
         className={cardClass(isCustom)}
       >
-        <span className={`text-2xl ${isCustom ? 'animate-wiggle' : ''}`}>✏️</span>
+        <Pencil size={22} strokeWidth={2.4} className={`my-0.5 text-text-primary ${isCustom ? 'animate-wiggle' : ''}`} />
         <span className="font-display text-sm font-semibold text-text-primary">other</span>
         <span className="font-hand text-xs font-bold leading-none text-text-secondary">you pick</span>
       </button>

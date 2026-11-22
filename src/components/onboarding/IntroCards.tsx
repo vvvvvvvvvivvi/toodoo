@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { completeFirstRun } from '@/lib/mutations/settingsMutations'
-import { GooseFace, Sparkle } from '@/components/shared/Decor'
+import { Duck, Sparkle } from '@/components/shared/Decor'
 
 const CARDS = [
   { emoji: '🍪', text: 'Tasks are food.' },
@@ -30,10 +30,9 @@ export function IntroCards() {
       <div key={index} className="relative flex h-56 w-64 animate-pop-in items-center justify-center">
         <div className="blob absolute inset-0 bg-butter" />
         <Sparkle size={30} className="absolute -left-2 top-6" />
-        <Sparkle size={20} className="absolute right-0 top-0" delay={0.7} />
         <Sparkle size={24} className="absolute bottom-0 right-6" delay={1.3} />
         {card.emoji === 'goose' ? (
-          <GooseFace size={130} className="relative animate-bob" />
+          <Duck size={104} className="relative animate-bob" />
         ) : (
           <span className="relative animate-bob text-8xl">{card.emoji}</span>
         )}

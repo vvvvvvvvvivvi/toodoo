@@ -6,21 +6,22 @@
 @import '@fontsource/gaegu/400.css';
 @import '@fontsource/gaegu/700.css';
 
-/* Palette: a cutesy paper-planner look — cream paper, butter-yellow cards,
-   beak orange, carrot, blush pink, and a soft dark-brown "ink". */
+/* Palette: a calm paper-planner look — warm white paper, pale butter cards,
+   dark-brown "ink" line work, and orange kept mostly for the duck's bill
+   and the one main action. Sage marks things that are done. */
 @theme {
-  --color-background: #fffaeb;
-  --color-paper: #fffdf6;
-  --color-butter: #f9f0bd;
-  --color-butter-deep: #f2e070;
-  --color-primary: #f7a23e;
-  --color-primary-deep: #d9822a;
-  --color-carrot: #ea7a3c;
-  --color-blush: #ec8f86;
-  --color-sparkle: #f7dd3a;
-  --color-accent: #8fbf5a;
-  --color-warning: #d9574a;
-  --color-circle-empty: #f6ebb9;
+  --color-background: #fffdf7;
+  --color-paper: #fffefa;
+  --color-butter: #fcf3d6;
+  --color-butter-deep: #f4df9e;
+  --color-primary: #f2b46c;
+  --color-primary-deep: #d99b52;
+  --color-carrot: #e9a06a;
+  --color-blush: #efc2b9;
+  --color-sparkle: #f4df9e;
+  --color-accent: #a9c38a;
+  --color-warning: #c2604f;
+  --color-circle-empty: #f7efd5;
   --color-text-primary: #3b2a1e;
   --color-text-secondary: #8b7355;
   --color-poo: #8b5e3c;
@@ -50,7 +51,7 @@ body,
 body {
   margin: 0;
   background-color: var(--color-background);
-  background-image: linear-gradient(180deg, #fffcf3 0%, #fff6d6 100%);
+  background-image: linear-gradient(180deg, #fffdf7 0%, #fdf8e8 100%);
   color: var(--color-text-primary);
   font-family: var(--font-body);
 }
@@ -84,14 +85,15 @@ body {
     font-family: var(--font-display);
     font-weight: 600;
     padding: 0.8rem 1.6rem;
-    box-shadow: 0 4px 0 var(--color-primary-deep);
+    border: 2.5px solid var(--color-text-primary);
+    box-shadow: 0 3px 0 var(--color-text-primary);
     transition:
       transform 120ms ease,
       box-shadow 120ms ease;
   }
   .btn-main:active {
     transform: translateY(3px);
-    box-shadow: 0 1px 0 var(--color-primary-deep);
+    box-shadow: 0 1px 0 var(--color-text-primary);
   }
 
   .chip {
@@ -110,8 +112,8 @@ body {
     transform: scale(0.95);
   }
   .chip-on {
-    background-color: var(--color-primary);
-    border-color: var(--color-primary-deep);
+    background-color: var(--color-butter-deep);
+    border-color: var(--color-text-primary);
   }
 
   .input-cute {
@@ -129,15 +131,15 @@ body {
     border-color: var(--color-primary);
   }
 
-  /* Orange gingham washi tape. */
+  /* Soft tan gingham washi tape. */
   .washi {
     height: 22px;
     width: 92px;
     opacity: 0.9;
-    background-color: #fde3c8;
+    background-color: #f6ecd6;
     background-image:
-      repeating-linear-gradient(90deg, rgb(234 122 60 / 0.55) 0 6px, transparent 6px 14px),
-      repeating-linear-gradient(0deg, rgb(234 122 60 / 0.45) 0 5px, transparent 5px 12px);
+      repeating-linear-gradient(90deg, rgb(196 160 104 / 0.35) 0 6px, transparent 6px 14px),
+      repeating-linear-gradient(0deg, rgb(196 160 104 / 0.3) 0 5px, transparent 5px 12px);
     clip-path: polygon(3% 0, 97% 4%, 100% 50%, 96% 100%, 4% 96%, 0 50%);
   }
 
@@ -147,7 +149,7 @@ body {
       background-image: repeating-linear-gradient(
         180deg,
         transparent 0 67px,
-        rgb(242 224 112 / 0.55) 67px 69px
+        rgb(232 214 160 / 0.5) 67px 69px
       );
       background-position: 0 24px;
     }
@@ -159,7 +161,7 @@ body {
     background-image: repeating-linear-gradient(
       180deg,
       transparent 0 37px,
-      rgb(242 224 112 / 0.7) 37px 39px
+      rgb(232 214 160 / 0.7) 37px 39px
     );
   }
 }

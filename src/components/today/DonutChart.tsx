@@ -1,6 +1,6 @@
 import { buildDonutSegments, type DonutSegment, type SegmentKind } from '@/components/today/donutMath'
 import type { Circle, Task } from '@/types/models'
-import { GooseFace } from '@/components/shared/Decor'
+import { DuckFace } from '@/components/shared/Decor'
 
 const RADIUS_OUTER = 115
 const RADIUS_INNER = 68
@@ -41,8 +41,8 @@ function ringSegmentPath(startFraction: number, endFraction: number): string {
 
 const SEGMENT_CLASS: Record<SegmentKind, string> = {
   digested: 'fill-accent stroke-butter',
-  planned: 'fill-primary stroke-butter',
-  locked: 'fill-carrot stroke-butter',
+  planned: 'fill-butter-deep stroke-butter',
+  locked: 'fill-primary stroke-butter',
   empty: 'fill-paper stroke-butter',
 }
 
@@ -82,7 +82,7 @@ export function DonutChart({ circle, tasks, today }: DonutChartProps) {
           <LockMarker key={`${s.key}-lock`} segment={s} />
         ))}
       </svg>
-      <GooseFace size={80}className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 animate-bob" />
+      <DuckFace size={78}className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 animate-bob" />
     </div>
   )
 }

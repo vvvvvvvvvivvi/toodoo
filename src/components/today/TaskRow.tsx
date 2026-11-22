@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Check, Lock } from 'lucide-react'
+import { Archive, Check, Lock, Pencil, Trash2, Utensils } from 'lucide-react'
 import type { Task } from '@/types/models'
 import { getFoodSize } from '@/lib/invariants/food'
 import { isLocked } from '@/lib/invariants/lock'
@@ -91,7 +91,7 @@ export function TaskRow({ task, today, open = false, onToggle, onNibble, onEdit,
           aria-label={`Complete ${task.title}`}
           className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full border-[2.5px] transition-all ${
             completing
-              ? 'animate-pop-in border-accent bg-accent text-paper'
+              ? 'animate-pop-in border-text-primary bg-accent text-text-primary'
               : 'border-text-primary/70 text-transparent hover:border-accent hover:text-accent'
           }`}
           style={{ borderRadius: '52% 48% 50% 50% / 48% 52% 48% 52%' }}
@@ -118,10 +118,10 @@ export function TaskRow({ task, today, open = false, onToggle, onNibble, onEdit,
       {open && (
         <div className="mt-2 flex animate-reveal flex-wrap gap-1.5 pl-10">
           <button type="button" onClick={() => onNibble(task)} aria-label={`Nibble ${task.title}`} className={action}>
-            🍴 nibble
+            <Utensils size={14} /> nibble
           </button>
           <button type="button" onClick={() => onEdit(task)} aria-label={`Edit ${task.title}`} className={action}>
-            ✏️ edit
+            <Pencil size={14} /> edit
           </button>
           <button
             type="button"
@@ -129,7 +129,7 @@ export function TaskRow({ task, today, open = false, onToggle, onNibble, onEdit,
             aria-label={`Return ${task.title} to backlog`}
             className={`${action} ${locked ? 'opacity-40' : ''}`}
           >
-            🥫 not today
+            <Archive size={14} /> not today
           </button>
           <button
             type="button"
@@ -137,7 +137,7 @@ export function TaskRow({ task, today, open = false, onToggle, onNibble, onEdit,
             aria-label={`Delete ${task.title}`}
             className={`${action} ${locked ? 'opacity-40' : ''}`}
           >
-            🗑️ toss
+            <Trash2 size={14} /> toss
           </button>
         </div>
       )}

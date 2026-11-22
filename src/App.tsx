@@ -9,7 +9,7 @@ import { useReflectionStore } from '@/stores/useReflectionStore'
 import { useSettingsStore } from '@/stores/useSettingsStore'
 import { TodayScreen } from '@/screens/TodayScreen'
 import { IntroCards } from '@/components/onboarding/IntroCards'
-import { GooseFace } from '@/components/shared/Decor'
+import { Duck } from '@/components/shared/Decor'
 
 function App() {
   const [booting, setBooting] = useState(true)
@@ -31,7 +31,7 @@ function App() {
   if (booting) {
     return (
       <div className="flex h-full items-center justify-center">
-        <GooseFace size={72} className="animate-bob" />
+        <Duck size={64} className="animate-bob" />
       </div>
     )
   }

@@ -4,6 +4,7 @@ import { NibbleModal } from '@/components/today/NibbleModal'
 import { AddTaskSheet, type TaskFormValues } from '@/components/backlog/AddTaskSheet'
 import { editPlannedTask, reorderPlannedTasks, nibbleTask } from '@/lib/mutations/taskMutations'
 import { useUIStore } from '@/stores/useUIStore'
+import { LoungingDuck } from '@/components/shared/Decor'
 import type { Task } from '@/types/models'
 
 interface TaskListTodayProps {
@@ -41,9 +42,12 @@ export function TaskListToday({ circleId, tasks, today }: TaskListTodayProps) {
   return (
     <div className="flex flex-col gap-2">
       {tasks.length === 0 && (
-        <p className="py-2 text-center font-hand text-lg font-bold text-text-secondary">
-          the plate is empty… the goose is peckish 🥺
-        </p>
+        <div className="flex flex-col items-center gap-1 py-3">
+          <LoungingDuck size={130} />
+          <p className="text-center font-hand text-lg font-bold text-text-secondary">
+            the plate is empty… the goose is peckish
+          </p>
+        </div>
       )}
       {tasks.map((task) => (
         <TaskRow

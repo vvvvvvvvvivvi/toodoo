@@ -1,9 +1,17 @@
 import type { CSSProperties } from 'react'
 
-// Small hand-drawn decorations shared across the app. All are purely
-// decorative: aria-hidden and pointer-events-none.
+// Hand-drawn decorations shared across the app. All are purely decorative:
+// aria-hidden and pointer-events-none.
+//
+// Mascot style: thick dark ink outline over a flat butter fill that's printed
+// slightly off-register (the fill is nudged down-left of the line), dot eyes,
+// a flat orange bill.
 
-/** Four-point sparkle with a dark outline, like a sticker. */
+const INK = '#2e2219'
+const BODY = '#f8dc93'
+const BILL = '#f0a04b'
+
+/** Four-point sparkle, outlined like a doodle. */
 export function Sparkle({
   size = 22,
   className = '',
@@ -26,71 +34,122 @@ export function Sparkle({
     >
       <path
         d="M12 1.5 C13 8 16 11 22.5 12 C16 13 13 16 12 22.5 C11 16 8 13 1.5 12 C8 11 11 8 12 1.5 Z"
-        fill="var(--color-sparkle)"
-        stroke="var(--color-text-primary)"
-        strokeWidth="1.8"
+        fill="var(--color-butter-deep)"
+        stroke={INK}
+        strokeWidth="1.6"
         strokeLinejoin="round"
       />
     </svg>
   )
 }
 
-/** A strip of gingham washi tape. */
+/** A strip of soft gingham washi tape. */
 export function Washi({ className = '', rotate = -4 }: { className?: string; rotate?: number }) {
   return <div aria-hidden className={`washi pointer-events-none ${className}`} style={{ rotate: `${rotate}deg` }} />
 }
 
-/** The toodoo goose, drawn round and soft. */
-export function GooseFace({ size = 64, className = '' }: { size?: number; className?: string }) {
+/** Round duck-face badge — the app logo (also the favicon). */
+export function DuckFace({ size = 64, className = '' }: { size?: number; className?: string }) {
   return (
     <svg aria-hidden width={size} height={size} viewBox="0 0 100 100" className={`pointer-events-none ${className}`}>
-      {/* sprout */}
-      <path d="M50 14 C50 8 52 4 56 2" stroke="#7aa94a" strokeWidth="3" fill="none" strokeLinecap="round" />
-      <ellipse cx="60" cy="5" rx="7" ry="4" fill="#8fbf5a" transform="rotate(-20 60 5)" />
-      {/* head */}
-      <ellipse cx="50" cy="56" rx="40" ry="40" fill="#fbe9a0" />
-      <ellipse cx="50" cy="56" rx="40" ry="40" fill="none" stroke="#f2d872" strokeWidth="3" />
-      {/* cheeks */}
-      <ellipse cx="24" cy="66" rx="7" ry="4.5" fill="#ec8f86" opacity="0.55" />
-      <ellipse cx="76" cy="66" rx="7" ry="4.5" fill="#ec8f86" opacity="0.55" />
-      {/* eyes */}
-      <circle cx="34" cy="50" r="4.6" fill="#5a4030" />
-      <circle cx="66" cy="50" r="4.6" fill="#5a4030" />
-      <circle cx="35.5" cy="48.5" r="1.4" fill="#fff" />
-      <circle cx="67.5" cy="48.5" r="1.4" fill="#fff" />
-      {/* beak */}
-      <ellipse cx="50" cy="66" rx="17" ry="9" fill="#f7a23e" />
-      <path d="M34 66 Q50 69 66 66" stroke="#e5781f" strokeWidth="2.4" fill="none" strokeLinecap="round" />
+      <circle cx="47" cy="54" r="41" fill={BODY} />
+      <circle cx="50" cy="50" r="41" fill="none" stroke={INK} strokeWidth="5" />
+      <circle cx="40" cy="43" r="4" fill={INK} />
+      <circle cx="61" cy="42" r="4" fill={INK} />
+      <path
+        d="M33 57 C40 49 62 49 68 56 C63 64 40 66 33 57 Z"
+        fill={BILL}
+        stroke={INK}
+        strokeWidth="4"
+        strokeLinejoin="round"
+      />
+      <path d="M37 57.5 Q50 60 64 56.5" stroke={INK} strokeWidth="2.6" fill="none" strokeLinecap="round" />
     </svg>
   )
 }
 
-/** A pair of carrots for the bottom corner. */
-export function Carrots({ className = '' }: { className?: string }) {
+const STAND_BODY =
+  'M27 21 C25 3 67 1 68 19 C69 31 67 45 66 56 C83 59 95 73 93 90 C91 106 77 114 55 114 C32 114 16 108 17 92 C18 78 23 70 29 64 C28 50 27 35 27 21 Z'
+
+/** The whole duck, standing — a chunky bean with a wing tucked on its belly. */
+export function Duck({ size = 90, className = '' }: { size?: number; className?: string }) {
   return (
-    <svg aria-hidden width="86" height="70" viewBox="0 0 86 70" className={`pointer-events-none ${className}`}>
-      <g transform="rotate(-35 30 40)">
-        <path d="M18 18 L42 18 L30 66 Z" fill="#ea7a3c" />
-        <path d="M22 28 L28 28 M24 40 L31 40" stroke="#c95e25" strokeWidth="2" strokeLinecap="round" />
-        <path d="M30 18 L24 4 M30 18 L31 2 M30 18 L38 6" stroke="#7aa94a" strokeWidth="3.5" strokeLinecap="round" />
-      </g>
-      <g transform="rotate(-35 62 46)">
-        <path d="M52 26 L72 26 L62 68 Z" fill="#f08a48" />
-        <path d="M56 36 L61 36 M58 48 L64 48" stroke="#c95e25" strokeWidth="2" strokeLinecap="round" />
-        <path d="M62 26 L57 14 M62 26 L63 12 M62 26 L69 16" stroke="#7aa94a" strokeWidth="3.5" strokeLinecap="round" />
-      </g>
+    <svg
+      aria-hidden
+      width={size}
+      height={size * 1.3}
+      viewBox="0 0 100 130"
+      className={`pointer-events-none ${className}`}
+    >
+      {/* legs + feet (behind the body) */}
+      <path d="M40 110 L40 121 M66 110 L66 121" stroke={INK} strokeWidth="4" strokeLinecap="round" />
+      <path
+        d="M30 124 C30 119 46 118 47 123 C47 127 31 128 30 124 Z M58 124 C58 119 74 118 75 123 C75 127 59 128 58 124 Z"
+        fill={BILL}
+        stroke={INK}
+        strokeWidth="3.5"
+        strokeLinejoin="round"
+      />
+      {/* off-register fill, then the ink line on top */}
+      <path d={STAND_BODY} fill={BODY} transform="translate(-3 2.5)" />
+      <path d={STAND_BODY} fill="none" stroke={INK} strokeWidth="4.5" strokeLinejoin="round" />
+      {/* wing */}
+      <path
+        d="M52 86 C57 76 75 76 80 87 C72 93 60 93 52 88"
+        fill="none"
+        stroke={INK}
+        strokeWidth="4"
+        strokeLinecap="round"
+      />
+      {/* face */}
+      <circle cx="41" cy="23" r="3" fill={INK} />
+      <circle cx="57" cy="22" r="3" fill={INK} />
+      <path
+        d="M33 34 C39 26 61 26 67 33 C63 42 39 44 33 34 Z"
+        fill={BILL}
+        stroke={INK}
+        strokeWidth="3.5"
+        strokeLinejoin="round"
+      />
+      <path d="M37 34.5 Q50 37.5 63 33.5" stroke={INK} strokeWidth="2.2" fill="none" strokeLinecap="round" />
     </svg>
   )
 }
 
-/** Little blossom sticker. */
-export function Blossom({ size = 34, className = '' }: { size?: number; className?: string }) {
+const LOUNGE_BODY =
+  'M16 50 C12 36 24 28 35 31 C45 21 70 20 86 29 C98 37 98 54 86 60 C70 67 36 68 22 63 C17 60 17 55 16 50 Z'
+
+/** The duck flopped on its belly, feet in the air — for idle/empty moments. */
+export function LoungingDuck({ size = 140, className = '' }: { size?: number; className?: string }) {
   return (
-    <svg aria-hidden width={size} height={size} viewBox="0 0 40 40" className={`pointer-events-none ${className}`}>
-      {[0, 72, 144, 216, 288].map((a) => (
-        <ellipse key={a} cx="20" cy="10" rx="7" ry="9" fill="#ec8f86" transform={`rotate(${a} 20 20)`} />
-      ))}
-      <circle cx="20" cy="20" r="5" fill="#f7c86a" />
+    <svg
+      aria-hidden
+      width={size}
+      height={size * 0.66}
+      viewBox="0 0 112 74"
+      className={`pointer-events-none ${className}`}
+    >
+      {/* feet kicked up behind */}
+      <path d="M88 34 L98 20 M93 38 L104 26" stroke={INK} strokeWidth="3.5" strokeLinecap="round" />
+      <path
+        d="M92 16 C93 9 103 10 100 21 C97 23 91 21 92 16 Z M99 23 C101 16 111 18 106 28 C103 30 97 28 99 23 Z"
+        fill={BILL}
+        stroke={INK}
+        strokeWidth="3"
+        strokeLinejoin="round"
+      />
+      <path d={LOUNGE_BODY} fill={BODY} transform="translate(-2.5 2.5)" />
+      <path d={LOUNGE_BODY} fill="none" stroke={INK} strokeWidth="4" strokeLinejoin="round" />
+      <path d="M50 42 C52 52 68 54 74 44" fill="none" stroke={INK} strokeWidth="3.5" strokeLinecap="round" />
+      {/* sleepy closed eye + bill resting on the ground */}
+      <path d="M26 40 Q29 43 32 40" stroke={INK} strokeWidth="2.6" fill="none" strokeLinecap="round" />
+      <path
+        d="M6 50 C8 43 22 43 25 49 C23 56 9 57 6 50 Z"
+        fill={BILL}
+        stroke={INK}
+        strokeWidth="3"
+        strokeLinejoin="round"
+      />
     </svg>
   )
 }

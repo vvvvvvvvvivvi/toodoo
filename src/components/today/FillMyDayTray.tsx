@@ -16,7 +16,7 @@ export function FillMyDayTray({ circleId, backlogTasks, gapMinutes, today }: Fil
   if (suggestions.length === 0) return null
 
   return (
-    <div className="card relative flex flex-col gap-2 bg-[#fde9d4] pt-5">
+    <div className="card relative flex flex-col gap-2 border-2 border-dashed border-butter-deep bg-paper pt-5">
       <Washi className="absolute -top-2.5 left-1/2 -translate-x-1/2" rotate={3} />
       <div className="flex items-start justify-between gap-2">
         <div>
@@ -40,7 +40,7 @@ export function FillMyDayTray({ circleId, backlogTasks, gapMinutes, today }: Fil
             key={task.id}
             type="button"
             onClick={() => attemptCapacityMutation({ kind: 'addTaskToCircle', circleId, taskId: task.id })}
-            className="chip animate-pop-in border-carrot/40 hover:-rotate-2"
+            className="chip animate-pop-in hover:-rotate-2"
             style={{ animationDelay: `${i * 60}ms` }}
           >
             + {task.title} · {task.remainingMinutes}m

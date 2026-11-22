@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { createCircle } from '@/lib/mutations/circleMutations'
 import { useSettingsStore } from '@/stores/useSettingsStore'
-import { GooseFace, Sparkle } from '@/components/shared/Decor'
+import { Pencil } from 'lucide-react'
+import { Duck, Sparkle } from '@/components/shared/Decor'
 
 const STOMACH_PRESETS = [
   { label: '4h', minutes: 240, caption: 'light lunch' },
@@ -41,7 +42,7 @@ export function EmptyTodayState({ today, anotherHelping = false }: EmptyTodaySta
   const bubble = (active: boolean) =>
     `flex flex-col items-center rounded-[24px] border-2 px-3 py-2 transition-all duration-200 ${
       active
-        ? '-translate-y-1 -rotate-2 border-primary-deep bg-primary shadow-[0_4px_0_var(--color-primary-deep)]'
+        ? '-translate-y-1 -rotate-2 border-text-primary bg-butter-deep shadow-[0_3px_0_var(--color-text-primary)]'
         : 'border-butter-deep bg-paper hover:-translate-y-0.5'
     }`
 
@@ -50,9 +51,8 @@ export function EmptyTodayState({ today, anotherHelping = false }: EmptyTodaySta
       <div className="relative flex h-44 w-56 items-center justify-center md:h-64 md:w-80">
         <div className="blob absolute inset-0 bg-butter" />
         <Sparkle size={26} className="absolute -left-1 top-3" />
-        <Sparkle size={18} className="absolute right-1 top-0" delay={0.8} />
         <Sparkle size={20} className="absolute bottom-2 right-3" delay={1.4} />
-        <GooseFace size={120} className="relative animate-bob md:size-[170px]" />
+        <Duck size={96} className="relative animate-bob md:size-[124px]" />
       </div>
 
       <h1 className="hand-label text-3xl leading-tight md:text-5xl">
@@ -87,7 +87,7 @@ export function EmptyTodayState({ today, anotherHelping = false }: EmptyTodaySta
           onClick={() => setIsCustom(true)}
           className={bubble(isCustom)}
         >
-          <span className="font-display text-lg">✏️</span>
+          <Pencil size={18} strokeWidth={2.4} className="my-1" />
           <span className="font-hand text-xs font-bold leading-none text-text-secondary">other</span>
         </button>
       </div>
@@ -109,7 +109,7 @@ export function EmptyTodayState({ today, anotherHelping = false }: EmptyTodaySta
       {error && <p className="font-hand text-lg font-bold text-warning">{error}</p>}
 
       <button type="button" onClick={handleStart} className="btn-main px-10 text-lg">
-        Let's go! 🍽️
+        Let's go!
       </button>
     </div>
   )
